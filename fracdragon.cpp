@@ -8,9 +8,9 @@ FracDragon::FracDragon(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FracDragon)
 {
-    zoomIn   = new QPushButton(QIcon::fromTheme("zoom-in"),"", this);
-    zoomOut  = new QPushButton(QIcon::fromTheme("zoom-out"),"", this);
-    zoomOrig = new QPushButton(QIcon::fromTheme("zoom-original"),"", this);
+    zoomIn   = new QPushButton(QIcon(":/images/zoom-in.svg"),"", this);
+    zoomOut  = new QPushButton(QIcon(":/images/zoom-out.svg"),"", this);
+    zoomOrig = new QPushButton(QIcon(":/images/zoom-original.svg"),"", this);
 
     scaleFactor = 1;
     hintHeight  = 1000;

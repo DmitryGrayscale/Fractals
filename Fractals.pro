@@ -27,3 +27,6 @@ FORMS    += mainwindow.ui \
     fraccantor.ui \
     serpinskitriangle.ui \
     fracdragon.ui
+
+RESOURCES += \
+    resources.qrc

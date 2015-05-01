@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    wgt = NULL;
     ui->setupUi(this);
     connect(ui->fractalsList,SIGNAL(doubleClicked(QModelIndex)),SLOT(on_drawButton_clicked()));
 }
@@ -44,7 +45,8 @@ void MainWindow::fracDragon()
 
 void MainWindow::on_drawButton_clicked()
 {
-    delete wgt;
+    if (NULL != wgt)
+        delete wgt;
     int row = ui->fractalsList->currentRow();
     fracFunc_p fp = (fracFunctionsList[row]);
     if (NULL != fp)
