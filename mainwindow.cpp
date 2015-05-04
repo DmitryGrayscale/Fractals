@@ -5,7 +5,7 @@ MainWindow::fracFunc_p MainWindow::fracFunctionsList[FCOUNT] = { &MainWindow::fr
                                                                  &MainWindow::fracSerpinskiTriangle,
                                                                  &MainWindow::fracDragon,
                                                                  &MainWindow::ffracIFS,
-                                                                 NULL};
+                                                                 &MainWindow::fracKoh };
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,13 +34,21 @@ void MainWindow::fracSerpinskiTriangle()
     ui->scrollArea->setWidget(wgt);
 }
 
+void MainWindow::fracKoh()
+{
+    wgt = new FracKoh(ui->scrollArea);
+    FracKoh *koh_p = static_cast<FracKoh*>(wgt);
+    ui->horizontalLayout->insertWidget(0, koh_p->text);
+    ui->horizontalLayout->insertWidget(1, koh_p->sbox);
+    ui->scrollArea->setWidget(wgt);
+}
+
 void MainWindow::ffracIFS()
 {
     wgt = new fracIFS(ui->scrollArea);
     fracIFS *ifs_p = static_cast<fracIFS*>(wgt);
     ui->horizontalLayout->insertWidget(0, ifs_p->text);
     ui->horizontalLayout->insertWidget(1, ifs_p->sbox);
-    ui->horizontalLayout->insertWidget(2, ifs_p->repaintButton);
     ui->scrollArea->setWidget(wgt);
 }
 

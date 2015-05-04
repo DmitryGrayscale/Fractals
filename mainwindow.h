@@ -8,6 +8,7 @@
 #include "serpinskitriangle.h"
 #include "fracdragon.h"
 #include "fracifs.h"
+#include "frackoh.h"
 
 #define FCOUNT 5
 
@@ -40,6 +41,7 @@ private slots:
     void fracDragon();
     void ffracIFS();
     void on_drawButton_clicked();
+    void fracKoh();
 };
 
 #endif // MAINWINDOW_H

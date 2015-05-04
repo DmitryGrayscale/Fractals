@@ -29,7 +29,6 @@ void FracCantor::paintEvent(QPaintEvent *event)
     (void)event;
     painter = new QPainter(this);
     painter->setPen(Qt::blue);
-//    painter->setRenderHint(QPainter::Antialiasing, true);
     drawTT(10, 610, 50);
     painter->end();
 }

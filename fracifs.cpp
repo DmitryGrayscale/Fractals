@@ -1,6 +1,6 @@
 #include "fracifs.h"
 #include "ui_fracifs.h"
-#include <QPainter>
+#include <QImage>
 
 fracIFS::fracIFS(QWidget *parent) :
     QWidget(parent),
@@ -12,13 +12,14 @@ fracIFS::fracIFS(QWidget *parent) :
     ymax = 0.0;
 
     depth = 5;
+    image = NULL;
 
     text = new QLabel("Глубина: ", this);
     sbox = new QSpinBox(this);
     sbox->setRange(1,15);
-    repaintButton = new QPushButton("Перерисовать", this);
+    sbox->setValue(depth);
 
-    connect(repaintButton,SIGNAL(clicked()), SLOT(repaintFractal()));
+    connect(sbox, SIGNAL(valueChanged(int)), SLOT(repaintFractal()));
 
     ui->setupUi(this);
 }
@@ -27,23 +28,44 @@ fracIFS::~fracIFS()
 {
     delete text;
     delete sbox;
-    delete repaintButton;
     delete ui;
+}
+
+QSize fracIFS::sizeHint() const
+{
+    return QSize(800, 600);
+}
+
+QSize fracIFS::minimumSizeHint()
+{
+    return QSize(800, 600);
 }
 
 void fracIFS::paintEvent(QPaintEvent *event)
 {
     (void)event;
 
-    painter = new QPainter(this);
+    const int h = 600;
+
+    if(NULL != image)
+    {
+        painter = new QPainter(this);
+        painter->drawImage(30, 0, *image);
+        painter->end();
+        return;
+    }
+    image = new QImage(h, h, QImage::Format_RGB32);
+    image->fill(QColor(222,222,222));
+
+    painter = new QPainter(image);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::green);
+
 
     qreal C[3][6] = {{0.5,  0,  0,  0.5,     0,    0},
                      {0.5,  0,  0,  0.5,   0.5,    0},
                      {0.5,  0,  0,  0.5,  0.25,  0.43}};
 
-    const int h = 600;
 
     int E[h][h];
     int S[h][h];
@@ -87,6 +109,9 @@ void fracIFS::paintEvent(QPaintEvent *event)
             }
     }
     painter->end();
+    painter->begin(this);
+    painter->drawImage(30, 0, *image);
+    painter->end();
 }
 
 void fracIFS::toScreen(QPointF w, QPoint &s)
@@ -108,5 +133,7 @@ void fracIFS::toWorld(QPoint s, QPointF &w)
 void fracIFS::repaintFractal()
 {
     depth = sbox->value();
+    delete image;
+    image = NULL;
     repaint();
 }

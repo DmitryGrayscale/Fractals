@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QPushButton>
+#include <QPainter>
 
 namespace Ui {
 class fracIFS;
@@ -20,7 +21,9 @@ public:
 
     QLabel *text;
     QSpinBox *sbox;
-    QPushButton *repaintButton;
+
+    QSize sizeHint() const;
+    QSize minimumSizeHint();
 
 protected:
     void paintEvent(QPaintEvent *event);
@@ -30,6 +33,7 @@ private slots:
 private:
     Ui::fracIFS *ui;
     QPainter *painter;
+    QImage* image;
 
     qreal xmin;
     qreal xmax;
