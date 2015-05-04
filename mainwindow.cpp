@@ -4,7 +4,7 @@
 MainWindow::fracFunc_p MainWindow::fracFunctionsList[FCOUNT] = { &MainWindow::fracCantor,
                                                                  &MainWindow::fracSerpinskiTriangle,
                                                                  &MainWindow::fracDragon,
-                                                                 NULL,
+                                                                 &MainWindow::ffracIFS,
                                                                  NULL};
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     wgt = NULL;
+
     ui->setupUi(this);
     connect(ui->fractalsList,SIGNAL(doubleClicked(QModelIndex)),SLOT(on_drawButton_clicked()));
 }
@@ -30,6 +31,16 @@ void MainWindow::fracCantor()
 void MainWindow::fracSerpinskiTriangle()
 {
     wgt = new SerpinskiTriangle(ui->scrollArea);
+    ui->scrollArea->setWidget(wgt);
+}
+
+void MainWindow::ffracIFS()
+{
+    wgt = new fracIFS(ui->scrollArea);
+    fracIFS *ifs_p = static_cast<fracIFS*>(wgt);
+    ui->horizontalLayout->insertWidget(0, ifs_p->text);
+    ui->horizontalLayout->insertWidget(1, ifs_p->sbox);
+    ui->horizontalLayout->insertWidget(2, ifs_p->repaintButton);
     ui->scrollArea->setWidget(wgt);
 }
 

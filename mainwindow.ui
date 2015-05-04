@@ -46,10 +46,7 @@
       </item>
       <item>
        <property name="text">
-        <string>Reserved</string>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsUserCheckable</set>
+        <string>IFS</string>
        </property>
       </item>
      </widget>
@@ -193,7 +190,9 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Выход</string>

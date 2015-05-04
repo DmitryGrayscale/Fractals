@@ -16,17 +16,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     fraccantor.cpp \
     serpinskitriangle.cpp \
-    fracdragon.cpp
+    fracdragon.cpp \
+    fracifs.cpp
 
 HEADERS  += mainwindow.h \
     fraccantor.h \
     serpinskitriangle.h \
-    fracdragon.h
+    fracdragon.h \
+    fracifs.h
 
 FORMS    += mainwindow.ui \
     fraccantor.ui \
     serpinskitriangle.ui \
-    fracdragon.ui
+    fracdragon.ui \
+    fracifs.ui
 
 RESOURCES += \
     resources.qrc

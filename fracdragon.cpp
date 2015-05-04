@@ -51,7 +51,7 @@ void FracDragon::paintEvent(QPaintEvent *event)
     painter->setMatrix(QMatrix(1.0, 0.0, 0.0, -1.0, this->width()/2, this->height()/2));
     painter->scale(scaleFactor, scaleFactor);
 
-    QPointF left(300,200);
+    QPointF left(300, 200);
 
     qreal angle = M_PI/2;
     int d = 3;
