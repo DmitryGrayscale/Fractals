@@ -1,6 +1,7 @@
 #include "fracifs.h"
 #include "ui_fracifs.h"
 #include <QImage>
+#include <QDebug>
 
 fracIFS::fracIFS(QWidget *parent) :
     QWidget(parent),
@@ -18,8 +19,8 @@ fracIFS::fracIFS(QWidget *parent) :
     sbox = new QSpinBox(this);
     sbox->setRange(1,15);
     sbox->setValue(depth);
-
-    connect(sbox, SIGNAL(valueChanged(int)), SLOT(repaintFractal()));
+    sbox->setSingleStep(1);
+    connect(sbox, SIGNAL(valueChanged(int)), SLOT(repaintFractal(int)));
 
     ui->setupUi(this);
 }
@@ -50,7 +51,10 @@ void fracIFS::paintEvent(QPaintEvent *event)
     if(NULL != image)
     {
         painter = new QPainter(this);
-        painter->drawImage(30, 0, *image);
+        painter->translate(300,300);
+        painter->rotate(180);
+        painter->translate(-300,-300);
+        painter->drawImage(0, 40, *image);
         painter->end();
         return;
     }
@@ -60,7 +64,6 @@ void fracIFS::paintEvent(QPaintEvent *event)
     painter = new QPainter(image);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::green);
-
 
     qreal C[3][6] = {{0.5,  0,  0,  0.5,     0,    0},
                      {0.5,  0,  0,  0.5,   0.5,    0},
@@ -110,7 +113,12 @@ void fracIFS::paintEvent(QPaintEvent *event)
     }
     painter->end();
     painter->begin(this);
-    painter->drawImage(30, 0, *image);
+
+    painter->translate(300,300);
+    painter->rotate(180);
+    painter->translate(-300,-300);
+
+    painter->drawImage(0, 40, *image);
     painter->end();
 }
 
@@ -130,8 +138,9 @@ void fracIFS::toWorld(QPoint s, QPointF &w)
     w.setY(ymax - s.y() * (ymax - ymin) / heightS);
 }
 
-void fracIFS::repaintFractal()
+void fracIFS::repaintFractal(int d)
 {
+    qDebug() << "repaintFractal";
     depth = sbox->value();
     delete image;
     image = NULL;

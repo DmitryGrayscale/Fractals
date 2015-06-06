@@ -5,7 +5,10 @@ MainWindow::fracFunc_p MainWindow::fracFunctionsList[FCOUNT] = { &MainWindow::fr
                                                                  &MainWindow::fracSerpinskiTriangle,
                                                                  &MainWindow::fracDragon,
                                                                  &MainWindow::ffracIFS,
-                                                                 &MainWindow::fracKoh };
+                                                                 &MainWindow::fracKoh,
+                                                                 &MainWindow::fracLevy,
+                                                                 &MainWindow::randSerpinski,
+                                                                 &MainWindow::fracMandelbrot };
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,6 +43,35 @@ void MainWindow::fracKoh()
     FracKoh *koh_p = static_cast<FracKoh*>(wgt);
     ui->horizontalLayout->insertWidget(0, koh_p->text);
     ui->horizontalLayout->insertWidget(1, koh_p->sbox);
+    ui->scrollArea->setWidget(wgt);
+}
+
+void MainWindow::fracLevy()
+{
+    wgt = new FracLevy(ui->scrollArea);
+    FracLevy *levy_p = static_cast<FracLevy*>(wgt);
+    ui->horizontalLayout->insertWidget(0, levy_p->text);
+    ui->horizontalLayout->insertWidget(1, levy_p->sbox);
+    ui->scrollArea->setWidget(wgt);
+}
+
+void MainWindow::randSerpinski()
+{
+    wgt = new RandSerpinski(ui->scrollArea);
+    RandSerpinski *serpinski_p = static_cast<RandSerpinski*>(wgt);
+    ui->horizontalLayout->insertWidget(0, serpinski_p->sbox);
+    ui->horizontalLayout->insertWidget(1, serpinski_p->button);
+    ui->scrollArea->setWidget(wgt);
+}
+
+void MainWindow::fracMandelbrot()
+{
+    wgt = new FracMandelbrot(ui->scrollArea);
+    FracMandelbrot *m_p = static_cast<FracMandelbrot*>(wgt);
+    ui->horizontalLayout->insertWidget(0, m_p->min);
+    ui->horizontalLayout->insertWidget(1, m_p->slider);
+    ui->horizontalLayout->insertWidget(2, m_p->max);
+    ui->horizontalLayout->insertWidget(3, m_p->button);
     ui->scrollArea->setWidget(wgt);
 }
 

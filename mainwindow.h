@@ -9,8 +9,11 @@
 #include "fracdragon.h"
 #include "fracifs.h"
 #include "frackoh.h"
+#include "fraclevy.h"
+#include "randserpinski.h"
+#include "fracmandelbrot.h"
 
-#define FCOUNT 5
+#define FCOUNT 8
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +45,9 @@ private slots:
     void ffracIFS();
     void on_drawButton_clicked();
     void fracKoh();
+    void fracLevy();
+    void randSerpinski();
+    void fracMandelbrot();
 };
 
 #endif // MAINWINDOW_H

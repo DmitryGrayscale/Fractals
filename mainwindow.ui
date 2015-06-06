@@ -54,6 +54,21 @@
         <string>Кривая Коха</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Леви</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Рандомизир. тр-к Серпинского</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Мандельброт</string>
+       </property>
+      </item>
      </widget>
     </item>
     <item row="0" column="1">

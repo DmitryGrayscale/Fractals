@@ -29,7 +29,7 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private slots:
-    void repaintFractal();
+    void repaintFractal(int d);
 private:
     Ui::fracIFS *ui;
     QPainter *painter;
